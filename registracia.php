@@ -1,13 +1,17 @@
 <?php
 
 if ($_SERVER['REQUEST_METHOD']=="POST"){
+
+
     if ($_POST['heslo']!=$_POST['heslo2']){
         $problem = "Heslá sa nezhodujú!!!";
     }
+
     else{
         include_once("connect.php");
-        postMetoda();
-        header('Location:'.'index.php');
+        kontrolaNickname();
+        $problem = "Daný nickname už je obsadený!!!";
+
     }
 }
 ?>

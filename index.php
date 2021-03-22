@@ -11,7 +11,7 @@
 <section class="formular">
     <?php
     session_start();
-    if(isset($_SESSION['nickname']) && !empty($_SESSION['nickname'])){
+    if(isset($_SESSION['nickname']) && !empty($_SESSION['nickname']) && isset($_SESSION['heslo']) && !empty($_SESSION['heslo'])){
         echo 'Vitaj '.$_SESSION['nickname'];
     }
     else{

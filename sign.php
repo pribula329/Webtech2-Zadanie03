@@ -1,3 +1,17 @@
+<?php
+
+if ($_SERVER['REQUEST_METHOD']=="POST"){
+
+
+    if (isset($_POST['nicknameP']) && !empty($_POST['nicknameP']) && isset($_POST['hesloP']) && !empty($_POST['hesloP'])){
+        include_once("connect.php");
+        prihlasenie();
+        $problem = 'Zadané meno alebo heslo je nesprávne';
+    }
+
+}
+?>
+
 <!DOCTYPE html>
 <html lang="sk">
 <head>
@@ -11,11 +25,11 @@
 <section class="formular">
     <h2>Prihlásenie</h2>
 
-    <form  action="login.php" method="post" enctype="multipart/form-data" class="row g-3 needs-validation"  novalidate>
+    <form  action="sign.php" method="post" enctype="multipart/form-data" class="row g-3 needs-validation"  novalidate>
         <div>
             <label for="validationPM" class="form-label">Používateľské meno</label>
             <div class="input-group has-validation">
-                <input type="text" class="form-control" id="validationPM" required>
+                <input type="text" class="form-control" id="validationPM" name="nicknameP" required>
                 <div class="invalid-feedback">
                     Prosím zadajte svoje užívateľské meno.
                 </div>
@@ -24,12 +38,14 @@
         <div>
             <label for="validationHeslo" class="form-label">Heslo</label>
             <div class="input-group has-validation">
-                <input type="text" class="form-control" id="validationHeslo" required>
+                <input type="text" class="form-control" id="validationHeslo" name="hesloP" required>
                 <div class="invalid-feedback">
                     Prosím zadajte svoje heslo.
                 </div>
             </div>
         </div>
+        <span id="upozornenieY"></span>
+        <span><?php echo $problem ?></span>
 
         <div class="col-12">
             <button class="btn btn-primary" type="submit">Prihlasiť</button>
