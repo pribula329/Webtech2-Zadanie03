@@ -31,3 +31,75 @@ function kontrola(id){
     document.getElementById('upozornenieY').style.color = "#FFFFFF";
     return  true;
 }
+
+function heslo() {
+
+    var x = document.getElementById("validationHeslo");
+    console.log("ahoj2")
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
+
+}
+
+function registraciaHeslo() {
+
+    var x = document.getElementById("validationHeslo");
+
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
+    var z = document.getElementById("validationHeslo2");
+
+    if (z.type === "password") {
+        z.type = "text";
+    } else {
+        z.type = "password";
+    }
+
+}
+
+function zobrazit() {
+    var x = document.getElementById('prihlasenia');
+
+    x.style.display="block";
+    document.getElementById('zobrazit').style.display="none";
+    document.getElementById('skryt').style.display="block";
+
+}
+function skryt() {
+    var x = document.getElementById('prihlasenia');
+
+    x.style.display="none";
+    document.getElementById('zobrazit').style.display="block";
+    document.getElementById('skryt').style.display="none";
+
+}
+function graf(reg,google,stu) {
+
+    var chart = new CanvasJS.Chart("graf", {
+        animationEnabled: true,
+        title: {
+            text: ""
+        },
+        data: [{
+            type: "pie",
+            startAngle: 225,
+            yValueFormatString: "##0\"\"",
+            indexLabel: "{label} {y}",
+            dataPoints: [
+                {y: reg, label: "Registrácia"},
+                {y:google, label: "Google"},
+                {y: stu, label: "Stuba účet"}
+            ]
+        }]
+    });
+    chart.render();
+
+}
+
+

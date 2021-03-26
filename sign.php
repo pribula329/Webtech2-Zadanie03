@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
     if (isset($_POST['nicknameP']) && !empty($_POST['nicknameP']) && isset($_POST['hesloP']) && !empty($_POST['hesloP'])){
         include_once("connect.php");
         prihlasenie();
-        $problem = 'Zadané meno alebo heslo je nesprávne';
+        $problem = 'Zadané meno, heslo alebo secretCode je nesprávne';
     }
 
 }
@@ -38,17 +38,32 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
         <div>
             <label for="validationHeslo" class="form-label">Heslo</label>
             <div class="input-group has-validation">
-                <input type="text" class="form-control" id="validationHeslo" name="hesloP" required>
+                <input type="password" class="form-control" id="validationHeslo" name="hesloP" required>
                 <div class="invalid-feedback">
                     Prosím zadajte svoje heslo.
+                </div>
+            </div>
+
+            <input class="form-check-input me-1" type="checkbox" onclick="heslo()"> Zobraziť heslo
+
+
+        </div>
+        <div>
+            <label for="validationCode" class="form-label">Secret code</label>
+            <div class="input-group has-validation">
+                <input type="text" class="form-control" id="validationCode" name="validationCode" required>
+                <div class="invalid-feedback">
+                    Prosím zadajte svoje užívateľské meno.
                 </div>
             </div>
         </div>
         <span id="upozornenieY"></span>
         <span><?php echo $problem ?></span>
 
+
         <div class="col-12">
             <button class="btn btn-primary" type="submit">Prihlasiť</button>
+            <a href="signGoogle.php"><img class="google" src="img/google.jpg"></a>
         </div>
     </form>
     <br>
@@ -57,5 +72,6 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 <script src="js/script.js"></script>
+
 </body>
 </html>

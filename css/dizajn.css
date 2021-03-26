@@ -1,5 +1,35 @@
+body{
+    background: linear-gradient(to top left, #4A148C, #C51162);
+    color: white;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
 .formular{
 
     width: 35%;
-    margin:5em auto;
+    margin:2em auto;
+
+    padding: 30px 40px 20px 40px;
+
+}
+
+#prihlasenia{
+    display: none;
+}
+#skryt{
+    display: none;
+}
+.tabulka{
+    max-height:  400px;
+    overflow-y: auto;
+    background-color: white;
+
+}
+th{
+    position: sticky;
+    top: 0;
+}
+.google{
+    width: 35px;
+    height: 35px;
 }

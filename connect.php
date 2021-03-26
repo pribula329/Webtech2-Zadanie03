@@ -11,11 +11,11 @@ function postMetoda($conn){
     $stm->bindValue(5, $hesloHash);;
 
     $stm->execute();
-    vlozenieLoginu($conn,$conn->lastInsertId());
+
     session_start();
     $_SESSION["nickname"]=$_POST["nickname"];
     $_SESSION["heslo"]=$hesloHash;
-    header('Location:'.'index.php');
+    header('Location:'.'start.php');
 
 }
 
@@ -63,23 +63,54 @@ function prihlasenie(){
 
     if ($existuje==true && (password_verify($_POST['hesloP'], $existuje['heslo']))){
 
-        vlozenieLoginu($conn,$existuje["id"]);
+        include_once ("check.php");
+        if (codeCheck($existuje['secret_code'],$_POST['validationCode'])) {
+            vlozenieLoginu($conn, $existuje["id"],"reg");
 
-        session_start();
-        $_SESSION["nickname"]=$_POST["nicknameP"];
-        $_SESSION["heslo"]=$existuje['heslo'];
-        header('Location:'.'index.php');
-
+            session_start();
+            $_SESSION["nickname"] = $_POST["nicknameP"];
+            $_SESSION["heslo"] = $existuje['heslo'];
+            $_SESSION["typ"] = "reg";
+            header('Location:' . 'index.php');
+        }
     }
 
 }
 
-function vlozenieLoginu($conn,$id){
-    var_dump($conn);
-    $stm = $conn->prepare("INSERT INTO loginy (id_uzivatela, datum, typ)
+function vlozenieLoginu($conn,$id,$typ){
+
+    $stm5 = $conn->prepare("INSERT INTO loginy (id_uzivatela, datum, typ)
                                 VALUES (?,?,?)");
-    $stm->bindValue(1,$id);
-    $stm->bindValue(2, date("Y-m-d"));
-    $stm->bindValue(3, "reg");
+    $stm5->bindValue(1,$id);
+    $stm5->bindValue(2, date("Y-m-d"));
+    $stm5->bindValue(3, $typ);
+    $stm5->execute();
+}
+
+function minulePrihlasenia($conn,$id){
+
+
+
+    $stm2 = $conn->prepare("select datum from loginy where id_uzivatela = ? ;");
+
+    $stm2->bindValue(1, $id);
+
+
+    $stm2->execute();
+
+    $prihlasenia = $stm2->fetchAll(PDO::FETCH_ASSOC);
+
+
+return $prihlasenia;
+
+}
+
+
+function statistika($conn){
+
+    $stm = $conn->prepare("select * from loginy;");
+
     $stm->execute();
+    $statistiky = $stm->fetchALl(PDO::FETCH_ASSOC);
+    return $statistiky;
 }

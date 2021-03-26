@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
 <section class="formular">
     <h2>Registrácia</h2>
 
-    <form  action="registracia.php" method="post" enctype="multipart/form-data" class="row g-3 needs-validation" onsubmit="return validateForm()"  novalidate>
+    <form  action="registracia.php" method="post" enctype="multipart/form-data" class="row g-3 needs-validation"  novalidate>
         <div>
             <label for="validationMeno" class="form-label">Meno</label>
             <input type="text" class="form-control" id="validationMeno" name="meno" onkeypress="kontrola(id)" required>
@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
         <div>
             <label for="validationHeslo" class="form-label">Heslo</label>
             <div class="input-group has-validation">
-                <input type="text" class="form-control" id="validationHeslo" name="heslo" required>
+                <input type="password" class="form-control" id="validationHeslo" name="heslo" required>
                 <div class="invalid-feedback">
                     Prosím zvoľte si heslo.
                 </div>
@@ -75,11 +75,13 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
         <div>
             <label for="validationHeslo2" class="form-label">Kontrola hesla</label>
             <div class="input-group has-validation">
-                <input type="text" class="form-control" id="validationHeslo2" name="heslo2" required>
+                <input type="password" class="form-control" id="validationHeslo2" name="heslo2" required>
                 <div class="invalid-feedback">
                     Prosím skontrolujte si heslo.
                 </div>
+
             </div>
+            <input class="form-check-input me-1" type="checkbox" onclick="registraciaHeslo()"> Zobraziť heslo
             <span id="upozornenieY"></span>
             <span><?php echo $problem ?></span>
         </div>
@@ -89,6 +91,7 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
 
         <div class="col-12">
             <button class="btn btn-primary" type="submit">Registrovať</button>
+            <a href="signGoogle.php"><img class="google" src="img/google.jpg"></a>
         </div>
     </form>
     <br>
@@ -97,5 +100,6 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 <script src="js/script.js"></script>
+
 </body>
 </html>
