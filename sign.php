@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
 
         <div class="col-12">
             <button class="btn btn-primary" type="submit">Prihlasiť</button>
-            <a href="signGoogle.php"><img class="google" src="img/google.jpg"></a>
+            <a href="signGoogle.php"><img class="google" src="img/google.jpg" alt="google"></a>
         </div>
     </form>
     <br>
