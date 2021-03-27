@@ -2,7 +2,7 @@
 
 if ($_SERVER['REQUEST_METHOD']=="POST"){
 
-
+//kontrola registracie
     if ($_POST['heslo']!=$_POST['heslo2']){
         $problem = "Heslá sa nezhodujú!!!";
     }
@@ -13,6 +13,9 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
         $problem = "Daný nickname už je obsadený!!!";
 
     }
+}
+else{
+    $problem='';
 }
 ?>
 
@@ -92,6 +95,7 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
         <div class="col-12">
             <button class="btn btn-primary" type="submit">Registrovať</button>
             <a href="signGoogle.php"><img class="google" src="img/google.jpg" alt="google"></a>
+            <a href="signLDAP.php"><img class="logo" src="img/STULogo.png" alt="stuba"></a>
         </div>
     </form>
     <br>

@@ -30,6 +30,10 @@ th{
     top: 0;
 }
 .google{
-    width: 35px;
+    width: 45px;
+    height: 45px;
+}
+.logo{
+    width: 141px;
     height: 35px;
 }

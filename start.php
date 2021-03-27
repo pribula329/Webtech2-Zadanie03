@@ -12,9 +12,12 @@
 <h1>PriStat</h1>
 <div class="formular">
     <?php
+
     session_start();
+    //kontrola ci je zadane heslo aj nick
     if(isset($_SESSION['nickname']) && !empty($_SESSION['nickname']) && isset($_SESSION['heslo']) && !empty($_SESSION['heslo'])){
         echo '<h3>Vitaj <strong>'.$_SESSION['nickname'].' tvoj QR-kód je</strong></h3>';
+       //generovanie secret kodu aj QR kodu
         require_once 'PHPGangsta/GoogleAuthenticator.php';
 
         $websiteTitle = 'PribulikZadanie03';
@@ -31,6 +34,7 @@
 //third parameter of verifyCode is a multiplicator for 30 seconds clock tolerance
         $result = $ga->verifyCode($secret, $myCode, 1);
 
+        //ulozenie secret kodu do DB
         include_once ("connect.php");
         $conn = pokusLogin();
         $stm = $conn->prepare("UPDATE registracia SET secret_code=? WHERE registracia.nickname=?");

@@ -2,13 +2,16 @@
 
 if ($_SERVER['REQUEST_METHOD']=="POST"){
 
-
+//kontrola prihlasenia
     if (isset($_POST['nicknameP']) && !empty($_POST['nicknameP']) && isset($_POST['hesloP']) && !empty($_POST['hesloP'])){
         include_once("connect.php");
         prihlasenie();
         $problem = 'Zadané meno, heslo alebo secretCode je nesprávne';
     }
 
+}
+else{
+    $problem = '';
 }
 ?>
 
@@ -64,6 +67,7 @@ if ($_SERVER['REQUEST_METHOD']=="POST"){
         <div class="col-12">
             <button class="btn btn-primary" type="submit">Prihlasiť</button>
             <a href="signGoogle.php"><img class="google" src="img/google.jpg" alt="google"></a>
+            <a href="signLDAP.php"><img class="logo" src="img/STULogo.png" alt="stuba"></a>
         </div>
     </form>
     <br>

@@ -1,4 +1,6 @@
 <?php
+
+//vlozenie uzivatela do DB a presmerovanie na vygenerovanie QR-kodu
 function postMetoda($conn){
     $hesloHash = password_hash($_POST['heslo'], PASSWORD_DEFAULT);
 
@@ -18,7 +20,7 @@ function postMetoda($conn){
     header('Location:'.'start.php');
 
 }
-
+//kontrola ci nieje nick obsadeny
 function kontrolaNickname(){
 
     $conn = pokusLogin();
@@ -33,7 +35,7 @@ function kontrolaNickname(){
         postMetoda($conn);
     }
 }
-
+// prihlasenie do DB
 function pokusLogin(){
 
     include_once("../config.php");
@@ -50,7 +52,7 @@ function pokusLogin(){
 
 
 }
-
+//prihlasenie sa 2FA
 function prihlasenie(){
 
     $conn = pokusLogin();
@@ -76,7 +78,7 @@ function prihlasenie(){
     }
 
 }
-
+//vlozenie zaznamu o prihlaseni
 function vlozenieLoginu($conn,$id,$typ){
 
     $stm5 = $conn->prepare("INSERT INTO loginy (id_uzivatela, datum, typ)
@@ -86,7 +88,7 @@ function vlozenieLoginu($conn,$id,$typ){
     $stm5->bindValue(3, $typ);
     $stm5->execute();
 }
-
+//hladanie minulých prihlasení
 function minulePrihlasenia($conn,$id){
 
 
@@ -105,7 +107,7 @@ return $prihlasenia;
 
 }
 
-
+//hladanie vsetkych prihlaseni
 function statistika($conn){
 
     $stm = $conn->prepare("select * from loginy;");

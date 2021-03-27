@@ -12,10 +12,11 @@
 <h1>PriStat</h1>
 <div class="formular">
     <?php
-    include ("error.php");
+
+
     session_start();
 
-    if (isset($_SESSION['typ']) && $_SESSION['typ']=="reg" && !empty($_SESSION['typ'])){
+    if (isset($_SESSION['typ']) && $_SESSION['typ']=="reg" && !empty($_SESSION['typ'])){//ak ide od normalne prihlasenie
         if(isset($_SESSION['nickname']) && !empty($_SESSION['nickname']) && isset($_SESSION['heslo']) && !empty($_SESSION['heslo'])){
             echo '<h3>Vitaj <strong>'.$_SESSION['nickname'].'</strong></h3>';
             include_once ("connect.php");
@@ -31,7 +32,12 @@
             header('Location:'.'sign.php');
         }
     }
-    elseif (isset($_SESSION['typ']) &&  $_SESSION['typ']=="google" && !empty($_SESSION['nickname'])){
+    elseif (isset($_SESSION['typ']) &&  $_SESSION['typ']=="google" && !empty($_SESSION['nickname'])){ //ak ide o google
+        echo '<h3>Vitaj <strong>'.$_SESSION['nickname'].'</strong></h3>';
+        include_once ("connect.php");
+        $conn = pokusLogin();
+    }
+    elseif (isset($_SESSION['typ']) &&  $_SESSION['typ']=="stu" && !empty($_SESSION['nickname'])){
         echo '<h3>Vitaj <strong>'.$_SESSION['nickname'].'</strong></h3>';
         include_once ("connect.php");
         $conn = pokusLogin();

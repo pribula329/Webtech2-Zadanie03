@@ -35,7 +35,7 @@ function kontrola(id){
 function heslo() {
 
     var x = document.getElementById("validationHeslo");
-    console.log("ahoj2")
+
     if (x.type === "password") {
         x.type = "text";
     } else {
@@ -43,6 +43,18 @@ function heslo() {
     }
 
 }
+function stuHeslo() {
+
+    var t = document.getElementById("stubaHeslo");
+
+    if (t.type === "password") {
+        t.type = "text";
+    } else {
+        t.type = "password";
+    }
+
+}
+
 
 function registraciaHeslo() {
 
